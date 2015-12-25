@@ -22,10 +22,5 @@ abstract class AbstractViewModel : ViewModel {
         subscriptions = null
     }
 
-    /**
-     * Provides [CompositeSubscription] that all bindings should be registered to.
-
-     * @param subscription that holds the [Subscription]s created by view model
-     */
     protected abstract fun subscribeToData(subscription: CompositeSubscription)
 }
