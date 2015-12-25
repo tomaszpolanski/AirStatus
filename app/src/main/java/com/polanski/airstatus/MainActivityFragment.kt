@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.polanski.airstatus.providers.PressureProvider
-import com.polanski.airstatus.providers.PressureProviderImpl
+import javax.inject.Inject
 
 class MainActivityFragment : Fragment() {
+
+    @Inject
+    lateinit var mPressureProvider: PressureProvider
 
     override fun onCreateView(inflater: LayoutInflater?,
                               container: ViewGroup?,
@@ -19,12 +22,16 @@ class MainActivityFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        MyApplication.graph.inject(this);
 
         val textView = view?.findViewById(R.id.pressure) as TextView
 
-        val  pressure : PressureProvider = PressureProviderImpl(getActivity())
-        pressure.pressureStream()
+        mPressureProvider.pressureStream()
                 .subscribe { textView.text = "Air Pressure!: " + it }
     }
-
 }

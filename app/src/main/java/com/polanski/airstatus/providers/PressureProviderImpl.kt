@@ -1,7 +1,5 @@
 package com.polanski.airstatus.providers
 
-import android.app.Activity
-import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -10,7 +8,7 @@ import rx.Observable
 import rx.Subscriber
 import rx.subscriptions.Subscriptions
 
-class PressureProviderImpl(private val activity: Activity) : PressureProvider {
+class PressureProviderImpl(private val sensor: SensorManager) : PressureProvider {
 
     override fun pressureStream(): Observable<Float> {
         return Observable.create { sub ->
@@ -37,8 +35,7 @@ class PressureProviderImpl(private val activity: Activity) : PressureProvider {
         }
     }
 
-    private fun sensorManager(): SensorManager =
-            activity.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    private fun sensorManager(): SensorManager = sensor
 
     private fun registerPressure(manager: SensorManager, listener: SensorEventListener) {
         manager.registerListener(listener, manager.getDefaultSensor(
