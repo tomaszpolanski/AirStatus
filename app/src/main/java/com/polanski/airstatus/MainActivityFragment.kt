@@ -11,6 +11,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import rx.lang.kotlin.observable
+import rx.lang.kotlin.toSingletonObservable
+import java.util.*
 
 class MainActivityFragment : Fragment() {
 
@@ -34,6 +37,7 @@ class MainActivityFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
         mSensorManager!!.registerListener(mSensorListener, mSensorManager!!.getDefaultSensor(
                 Sensor.TYPE_PRESSURE), SensorManager.SENSOR_DELAY_NORMAL)
     }
