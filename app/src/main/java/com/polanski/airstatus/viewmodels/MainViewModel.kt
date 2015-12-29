@@ -1,6 +1,6 @@
 package com.polanski.airstatus.viewmodels
 
-import com.polanski.airstatus.fasades.PressureDisplay
+import com.polanski.airstatus.facades.PressureDisplay
 import rx.Observable
 import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
