@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.polanski.airstatus.providers.PressureProvider
+import com.polanski.airstatus.viewmodels.MainViewModel
 import javax.inject.Inject
 
 class MainActivityFragment : Fragment() {
 
     @Inject
-    lateinit var mPressureProvider: PressureProvider
+    lateinit var viewModel: MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater?,
                               container: ViewGroup?,
@@ -31,7 +31,7 @@ class MainActivityFragment : Fragment() {
 
         val textView = view?.findViewById(R.id.pressure) as TextView
 
-        mPressureProvider.pressureStream()
-                .subscribe { textView.text = "Air Pressure!: " + it }
+        viewModel.pressureStream()
+                .subscribe { textView.text = it }
     }
 }
