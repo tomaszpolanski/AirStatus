@@ -1,4 +1,4 @@
-package com.polanski.airstatus.fasades
+package com.polanski.airstatus.facades
 
 import rx.Observable
 

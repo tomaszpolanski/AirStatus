@@ -3,8 +3,8 @@ package com.polanski.airstatus.injections
 import android.app.Application
 import android.content.Context
 import android.hardware.SensorManager
-import com.polanski.airstatus.fasades.PressureDisplay
-import com.polanski.airstatus.fasades.PressureDisplayImpl
+import com.polanski.airstatus.facades.PressureDisplay
+import com.polanski.airstatus.facades.PressureDisplayImpl
 import com.polanski.airstatus.providers.PressureProvider
 import com.polanski.airstatus.providers.PressureProviderImpl
 import dagger.Module
