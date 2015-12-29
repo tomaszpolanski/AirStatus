@@ -17,25 +17,20 @@ class AndroidModule(private val application: Application) {
     @Provides
     @Singleton
     @ForApplication
-    fun provideApplicationContext(): Context {
-        return application
-    }
+    fun provideApplicationContext(): Context = application
 
     @Provides
     @Singleton
-    fun provideSensorManager(): SensorManager {
-        return application.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-    }
+    fun provideSensorManager(): SensorManager =
+            application.getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
     @Provides
     @Singleton
-    fun providePressureProvider(sensor: SensorManager): PressureProvider {
-        return PressureProviderImpl(sensor);
-    }
+    fun providePressureProvider(sensor: SensorManager): PressureProvider =
+            PressureProviderImpl(sensor)
 
     @Provides
     @Singleton
-    fun providePressureDisplay(provider: PressureProvider): PressureDisplay {
-        return PressureDisplayImpl(provider);
-    }
+    fun providePressureDisplay(provider: PressureProvider): PressureDisplay =
+            PressureDisplayImpl(provider)
 }
