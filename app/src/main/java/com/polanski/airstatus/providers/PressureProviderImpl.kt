@@ -14,9 +14,9 @@ class PressureProviderImpl(private val sensor: SensorManager) : PressureProvider
         return Observable.create { sub ->
             if (!sub.isUnsubscribed) {
                 val sensorListener = createListener(sub)
-                registerPressure(sensorManager(), sensorListener)
+                registerPressure(sensor, sensorListener)
 
-                sub.add(Subscriptions.create { sensorManager().unregisterListener(sensorListener) })
+                sub.add(Subscriptions.create { sensor.unregisterListener(sensorListener) })
             }
         }
     }
@@ -35,11 +35,10 @@ class PressureProviderImpl(private val sensor: SensorManager) : PressureProvider
         }
     }
 
-    private fun sensorManager(): SensorManager = sensor
-
     private fun registerPressure(manager: SensorManager, listener: SensorEventListener) {
-        manager.registerListener(listener, manager.getDefaultSensor(
-                Sensor.TYPE_PRESSURE), SensorManager.SENSOR_DELAY_NORMAL)
+        manager.registerListener(listener,
+                manager.getDefaultSensor(Sensor.TYPE_PRESSURE),
+                SensorManager.SENSOR_DELAY_NORMAL)
     }
 
 }
